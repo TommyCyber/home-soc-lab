@@ -98,4 +98,5 @@ A Windows 10 victim machine was successfully onboarded into the Wazuh SIEM using
 - Agent status shows **Active**
 - Logs are now being forwarded and monitored in real time
 
-![Windows 10 Agent Connected](screenshots/windows10 machine connected to SIEM.png)
+![Windows 10 Agent Connected](screenshots/windows10-agent-connected.png)
+
