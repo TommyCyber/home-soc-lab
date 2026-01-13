@@ -25,7 +25,7 @@ Going to insert SS/diagrams
 - Incident investigation
 - SOC analyst methodology
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Wazuh Deployment Notes
 
@@ -48,3 +48,10 @@ Going to insert SS/diagrams
 - Wazuh dashboard fully operational
 - Ready to onboard agents and generate security events
 - Outcome can be seen in the screenshot labeled "1- Wazuh SIEM Dashboard"
+
+### Wazuh Dashboard Overview
+
+Below is the initial Wazuh dashboard after successful deployment and configuration.  
+At this stage, no agents have been enrolled yet.
+
+![Wazuh Dashboard](screenshots/wazuh-dashboard-home.png)
