@@ -100,3 +100,42 @@ A Windows 10 victim machine was successfully onboarded into the Wazuh SIEM using
 
 ![Windows 10 Agent Connected](screenshots/windows10-agent-connected.png)
 
+--------------------------------
+
+## Generating my first Wazuh alert (Windows 10 failed logon)
+
+### Goal
+Generate and confirm a real Wazuh alert from a Windows 10 endpoint by creating multiple failed login attempts (Event ID **4625**) and verifying they appear in the Wazuh **Security events** dashboard.
+
+### What I did
+1. Confirmed the Windows agent was connected and reporting.
+2. Created multiple failed password attempts on the Windows 10 VM to trigger **4625** (logon failure).
+3. Opened Wazuh Dashboard → **Security events** and verified events were flowing from my Windows agent.
+4. Filtered the results to confirm the events came from my Windows machine and matched the failed logon alert.
+
+### Issues I ran into (and fixes)
+
+**Problem 1: No events showing in Security events**
+- I initially saw “No results for selected time range”.
+- **Fix:** Expanded the time range (Last 24 hours / Last 7 days) and refreshed.
+
+**Problem 2: Password failures didn’t appear even though I knew I generated them**
+- The Windows machine showed failed logons, but Wazuh didn’t show them at first.
+- **Fix:** Enabled the correct Windows audit policies for logon failures and confirmed Security log collection was enabled in the Wazuh agent configuration.
+
+**Problem 3: Dashboard filters were confusing / seemed stuck**
+- A filter like `manager.name: wazuh-VirtualBox` made it look like nothing was coming in.
+- **Fix:** Removed/cleared filters and used a direct query filter on the Windows agent instead (e.g., `agent.name:"DESKTOP-9S1EKMG"`), then searched for the failed logon events.
+
+**Problem 4: Authentication/permissions issues when testing the indexer**
+- Some curl checks returned **Unauthorized** until credentials were corrected.
+- **Fix:** Reset/updated the indexer admin password and updated the Wazuh dashboard config to match, then restarted the dashboard service.
+
+### Proof / Result
+- Windows 10 agent events are now visible in **Security events**
+- Failed logon events (Event ID **4625**) are being ingested and can be filtered/searched
+- Alerts now show with current timestamps and correct agent name
+
+![Wazuh 4625 Alert Visible](screenshots/wazuh-4625-alert.png)
+
+
